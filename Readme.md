@@ -1,4 +1,3 @@
-````markdown
 # Task Management System
 
 The Task Management System is a full-stack JavaScript application designed to manage tasks with associated tags. It provides RESTful API endpoints to perform CRUD operations on tasks and tags, allowing users to create, read, update, and delete tasks along with their tags.
@@ -27,7 +26,6 @@ To run the Task Management System locally, follow these steps:
    ```bash
    git clone https://github.com/your-username/task-management.git
    ```
-````
 
 2. Navigate to the project directory:
 
@@ -85,7 +83,3 @@ Feel free to explore the codebase for more detailed information on the implement
 Enjoy using the Task Management System to organize and manage your tasks efficiently!
 
 For any inquiries or issues, please contact [your-email@example.com](mailto:your-email@example.com).
-
-```
-
-```
