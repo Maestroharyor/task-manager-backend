@@ -34,7 +34,6 @@ app.use("*", (req: Request, res: Response) => {
 });
 
 // Database Connection
-
 mongoose
   .connect(URI)
   .then(() => {

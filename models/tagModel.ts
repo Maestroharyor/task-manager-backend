@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+import mongoose from "mongoose";
 import { ITag } from "../types";
 
 const tagSchema = new mongoose.Schema({

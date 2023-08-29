@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+import mongoose from "mongoose";
 import { ITask } from "../types";
 
 const taskSchema = new mongoose.Schema({
