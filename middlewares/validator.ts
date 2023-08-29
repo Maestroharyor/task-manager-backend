@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 // Validation middleware for creating or updating tasks
 export const validateTaskData = [
   body("title").notEmpty().withMessage("Title is required"),
-  body("description").notEmpty().withMessage("Description is required"),
+  body("description").isString().withMessage("Description is required"),
   body("completed").isBoolean().withMessage("Completed must be a boolean"),
   body("tags").isArray().withMessage("Tags must be an array"),
   (req: Request, res: Response, next: NextFunction) => {
