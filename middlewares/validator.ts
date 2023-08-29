@@ -10,13 +10,11 @@ export const validateTaskData = [
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Invalid data sent",
-          error: errors.array(),
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Invalid data sent",
+        error: errors.array(),
+      });
     }
     next();
   },
@@ -28,13 +26,11 @@ export const validateTagData = [
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Invalid data sent",
-          errors: errors.array(),
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Invalid data sent",
+        errors: errors.array(),
+      });
     }
     next();
   },

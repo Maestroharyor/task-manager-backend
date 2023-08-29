@@ -4,6 +4,7 @@ import {
   getTasks,
   getTask,
   updateTask,
+  updateTaskCompletion,
   deleteTask,
 } from "../../controllers/taskController";
 import { validateTaskData } from "../../middlewares/validator";
@@ -14,6 +15,7 @@ router.post("/", validateTaskData, createTask);
 router.get("/", getTasks);
 router.get("/:id", getTask);
 router.put("/:id", validateTaskData, updateTask);
+router.patch("/:id/status", updateTaskCompletion);
 router.delete("/:id", deleteTask);
 
 export default router;

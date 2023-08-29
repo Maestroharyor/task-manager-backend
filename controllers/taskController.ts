@@ -116,6 +116,39 @@ export const updateTask = async (req: Request, res: Response) => {
   }
 };
 
+export const updateTaskCompletion = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const taskId = req.params.id;
+  const { completed } = req.body;
+  if (completed === undefined) {
+    res
+      .status(400)
+      .json(createApiResponse(false, "Completed must be a boolean"));
+    return;
+  }
+
+  try {
+    const task: ITask | null = await Task.findByIdAndUpdate(
+      taskId,
+      { completed },
+      { new: true }
+    );
+
+    if (!task) {
+      res.status(404).json(createApiResponse(false, "Task not found"));
+      return;
+    }
+
+    res
+      .status(200)
+      .json(createApiResponse(true, "Task completion status updated", task));
+  } catch (error: any) {
+    res.status(400).json(createApiResponse(false, error.message));
+  }
+};
+
 export const deleteTask = async (req: Request, res: Response) => {
   const taskId = req.params.id;
   try {
