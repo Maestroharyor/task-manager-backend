@@ -18,14 +18,14 @@ export const createTask = async (
       let tag = await Tag.findOne({ name: tagName });
 
       if (!tag) {
-        // Tag doesn't exist, create a new one
+        // If Tag doesn't exist, create a new one
         tag = await Tag.create({
           name: tagName,
           color: randomColor(),
           count: 1,
         });
       } else {
-        // Tag exists, increment its count
+        // If Tag exists, increment its count
         await Tag.updateOne({ _id: tag._id }, { $inc: { count: 1 } });
       }
 

@@ -14,8 +14,7 @@ The Task Management System is a full-stack JavaScript application designed to ma
 ## Live Demo
 
 Test out the API of the Task Management System [here](https://task-manager-backend-maestro.vercel.app/).
-
-<!-- Check out the live demo of the Task Management System [here](https://task-management-react.vecel.com). -->
+Check out the live demo of the Task Management System [here](https://task-manager-frontend.vercel.app/).
 
 ## How to Run
 
@@ -69,6 +68,7 @@ The Task Management System is built using Node.js and Express.js on the backend,
 - `GET /tasks/:id`: Get details of a specific task.
 - `POST /tasks`: Create a new task with associated tags.
 - `PUT /tasks/:id`: Update an existing task, including associated tags.
+- `PATCH /tasks/:id/status`: Update an existing task status to set it's completion to true and false.
 - `DELETE /tasks/:id`: Delete a task and update associated tag counts.
 - `GET /tags`: Get a list of all tags.
 - `GET /tags/:id`: Get details of a specific tag.
@@ -82,4 +82,4 @@ Feel free to explore the codebase for more detailed information on the implement
 
 Enjoy using the Task Management System to organize and manage your tasks efficiently!
 
-For any inquiries or issues, please contact [your-email@example.com](mailto:your-email@example.com).
+For any inquiries or issues, please contact me on my [website](https://ayomideodewale.com) or send a mail to [ayomide.odewale1@gmail.com](mailto:ayomideodewale1@gmail.com).
