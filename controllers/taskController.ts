@@ -19,7 +19,11 @@ export const createTask = async (
 
       if (!tag) {
         // Tag doesn't exist, create a new one
-        tag = await Tag.create({ name: tagName, count: 1 });
+        tag = await Tag.create({
+          name: tagName,
+          color: randomColor(),
+          count: 1,
+        });
       } else {
         // Tag exists, increment its count
         await Tag.updateOne({ _id: tag._id }, { $inc: { count: 1 } });
