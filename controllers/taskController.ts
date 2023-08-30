@@ -5,32 +5,27 @@ import { ITask } from "../types";
 import Tag from "../models/tagModel";
 import randomColor from "randomcolor";
 
-export const createTask = async (req: Request, res: Response) => {
+export const createTask = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { title, description, tags } = req.body;
 
   try {
-    // Find all existing tags with the provided tag names
-    const existingTags = await Tag.find({ name: { $in: tags } });
-
     const newTags: string[] = [];
-    const existingTagNames = existingTags.map((tag) => tag.name);
 
-    // Create tags that do not exist and update counts for existing tags
     for (const tagName of tags) {
-      if (!existingTagNames.includes(tagName)) {
-        const newTag = await Tag.create({
-          name: tagName,
-          count: 1,
-          color: randomColor(),
-        });
-        newTags.push(newTag._id);
+      let tag = await Tag.findOne({ name: tagName });
+
+      if (!tag) {
+        // Tag doesn't exist, create a new one
+        tag = await Tag.create({ name: tagName, count: 1 });
       } else {
-        const existingTag = existingTags.find((tag) => tag.name === tagName);
-        if (existingTag) {
-          await Tag.updateOne({ _id: existingTag._id }, { $inc: { count: 1 } });
-          newTags.push(existingTag._id);
-        }
+        // Tag exists, increment its count
+        await Tag.updateOne({ _id: tag._id }, { $inc: { count: 1 } });
       }
+
+      newTags.push(tag._id);
     }
 
     const task: ITask = new Task({ title, description, tags: newTags });
@@ -38,7 +33,12 @@ export const createTask = async (req: Request, res: Response) => {
 
     res.status(201).json(createApiResponse(true, "Task created", task));
   } catch (error: any) {
-    res.status(400).json(createApiResponse(false, error.message));
+    if (error.code === 11000) {
+      // Duplicate key error, tag name already exists
+      res.status(400).json(createApiResponse(false, "Tag name already exists"));
+    } else {
+      res.status(400).json(createApiResponse(false, error.message));
+    }
   }
 };
 
